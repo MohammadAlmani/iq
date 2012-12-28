@@ -1,0 +1,157 @@
+from django.db import models
+import datetime
+
+years=[('','')]
+for y in range(1930,2013):        
+    years.append(tuple([y.__str__(),y.__str__()]))        
+years = tuple(years)
+
+
+MILEAGE_CHOICES = (
+    (1, 'غير محدد'),
+    (2, '10.000'), 
+    (3, '15.000'), 
+    (4, '20.000'), 
+    (5, '25.000'), 
+    (6, '30.000'), 
+    (7, '35.000'), 
+    (8, '40.000'), 
+    (9, '50.000'), 
+    (10, '75.000'), 
+    (11, '100.000'), 
+    (12, '150.000'), 
+    (13, '200.000'), 
+    (14, '250.000'), 
+    (15, '300.000'), 
+    (16, '400.000'), 
+    (17, '500.000'), 
+    (18, '1.000.000'),
+)
+
+COLOR_CHOICES = (
+    (1, 'red'),
+    (2, 'blue'),
+    (3, 'black'),
+    (4, 'pink'),
+)
+
+COMPANY_CHOICES = (
+    (1, 'nissan'),
+    (2, 'honda'),
+    (3, 'toytoa'),
+    (4, 'mazda'),
+)
+
+MILEAGE_CHOICES = (
+    (1, 'red'),
+    (2, 'blue'),
+    (3, 'black'),
+    (4, 'pink'),
+)
+ADVTYPE_CHOICES = (
+    (1, 'personal'),
+    (2, 'autoshow'),
+)
+
+CYLINDER_CHOICES = (
+    (1, 'CYLINDER'),
+    (2, '2 CYLINDER'),
+    (3, '3 CYLINDER'),
+    (4, '4 CYLINDER'),
+    (5, '5 CYLINDER'),
+    (6, '6 CYLINDER'),
+    (6, '7 CYLINDER'),
+    (7, '8 CYLINDER'),
+    (8, '9 CYLINDER'),
+    (10, '10 CYLINDER'),
+    (11, '11 CYLINDER'),
+    (12, '12 CYLINDER'),
+)
+
+GEAR_CHOICES = (
+    (1, 'Manual'),
+    (2, 'Automatic'),
+    (3, 'Tiptronic'),
+    (4, 'F-1'),
+    (5, 'Smg'),
+)
+
+WINDOWTYPE_CHOICES = (
+    (1, 'Manual'),
+    (2, 'Automatic'),
+)
+
+SEATSTYPE_CHOICES = (
+    (1, 'Cloth'),
+    (2, 'Leather'),
+)
+
+PRICE_CHOICES = (
+    (1, '500.000'), 
+    (2, '1.000.000'), 
+    (3, '2.000.000'),
+    (4, '3.000.000'),
+    (5, '4.000.000'),
+    (6, '5.000.000'),
+    (7, '6.000.000'),
+    (8, '7.000.000'),
+    (9, '8.000.000'),
+    (10, '9.000.000'),
+    (11, '10.000.000'),
+    (12, '20.000.000'),
+    (13, '30.000.000'),
+    (14, '40.000.000'),
+    (15, '50.000.000'),
+    (16, '60.000.000'),
+    (17, '70.000.000'),
+    (18, '80.000.000'),
+    (19, '90.000.000'),
+    (20, '100.000.000'),
+    (21, '110.000.000'),
+    (22, '120.000.000'),
+    (23, '130.000.000'),
+    (24, '140.000.000'),
+    (25, '150.000.000'),
+    (26, '160.000.000'),
+)
+
+class Adv(models.Model):
+    company = models.IntegerField(choices=COMPANY_CHOICES, default=1)
+    carntype = models.CharField(max_length=60)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    made_date = models.CharField(choices=years,max_length=10)
+    tv = models.BooleanField(default=False)
+    dvd = models.BooleanField(default=False)
+    cd = models.BooleanField(default=False)
+    gps = models.BooleanField(default=False)
+    slideroof = models.BooleanField(default=False)
+    warranty = models.BooleanField(default=False)
+    phone = models.BooleanField(default=False)
+    bodycolor = models.IntegerField(choices=COLOR_CHOICES, default=1)
+    insidecolor  = models.IntegerField(choices=COLOR_CHOICES, default=1)
+    advertise_type	= models.IntegerField(choices=ADVTYPE_CHOICES, default=1)
+    mileage = models.IntegerField(choices=MILEAGE_CHOICES, default=1)
+    price = models.IntegerField(choices=PRICE_CHOICES, default=1)
+    gear = models.IntegerField(choices=GEAR_CHOICES, default=1)
+    cylinders = models.IntegerField(choices=CYLINDER_CHOICES, default=1)
+    seatstype = models.IntegerField(choices=SEATSTYPE_CHOICES, default=1)
+    windowstype = models.IntegerField(choices=WINDOWTYPE_CHOICES, default=1)
+
+
+_________________
+company - الشركة المصنعة - 
+carntype - نوع السيارة 
+made_date موديل السيارة   - وتكون بين قيمتين من والى
+advertise_type - المعلن - 
+gear مغير السرع
+mileage المسافة التي سارت بها السيارة - وتكون بين قيمتين من والى
+bodycolor اللون الخارجي 
+insidecolor - اللون الداخلي 
+seatstype - الفرش
+cylinders - عدد السلندرات  
+price  السعر - ويكون بين قيمتين من والى	
+
+tv
+dvd 
+cd 
+gps
